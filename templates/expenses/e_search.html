@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="showcase" style="background-color:aliceblue">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <div class="overlay p-5">
+        <h1 class="display-4 mb-4">
+          Searching Just Got So Easy
+        </h1>
+        
+        <div class="search">
+          <form action="{% url 'e_search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row center">
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="keywords" class="form-control" placeholder="Keyword">
+              </div>
+
+              <div class="col-md-6 mb-3 text-center">
+                <label class="sr-only">Entry Type</label>
+                <input type="text" name="entry" class="form-control" placeholder="entry(debit or credit)">
+              </div>
+
+              <div class="col-md-6 mb-3 text-center">
+                <label class="sr-only">Handler</label>
+                <input type="text" name="handler" class="form-control" placeholder="Handler">
+              </div>
+
+              <div class="form-row center">
+                <div class="col-md-6 mb-3">
+                  <label class="sr-only">Date</label>
+                  <input type="text" name="date" class="form-control" placeholder="Date">
+                </div>
+
+                <div class="form-row center">
+                  <div class="col-md-12 mb-3">
+                    <label class="sr-only">type of transaction</label>
+                    <input type="text" name="type_of_transaction" class="form-control" placeholder="type of transaction">
+                  </div>
+
+              
+
+          
+            </div>
+            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+        {% if expenses %}
+        {% for expense in expenses %}
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <div class="card-img-overlay">
+              <h2>
+                <span class="badge badge-secondary text-white">{{ expense.entry }}</span>
+              </h2>
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 class="text-primary">{{ expense.handler }}</h4>
+                <p>
+                  {{ expense.date }} </p>
+              </div>
+              <hr>
+              <div class="row py-2 text-secondary">
+                <div class="col-6">
+                  <i class="fas fa-th-large"></i>{{ expense.category }}</div>
+                
+              <div class="row py-2 text-secondary">
+                <div class="col-6">
+                  <i class="fas fa-bed"></i>{{ expense.amount }}</div>
+                <div class="col-6">
+                  <i class="fas fa-bath"></i>{{ expense.type_of_transaction }}</div>
+              </div>
+              <hr>
+              <div class="row py-2 text-secondary">
+                <div class="col-12">
+                  <i class="fas fa-user"></i>{{ expense.description }}</div>
+              </div>
+              
+              
+             
+            
+          </div>
+        </div>
+  
+        {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+          Not Available
+        </div>
+        {% endif %}
+  
+
+ 
+    </div>
+</div>
+</section>
+
+  
+
+ 
+  
+{% endblock %}

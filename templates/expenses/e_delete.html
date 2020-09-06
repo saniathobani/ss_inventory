@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <p>Are You Sure You Want To Delete "{{ item }}"</p>
+
+            <form action="{% url 'delete_expenses' item.id %}" method="POST">
+                {% csrf_token %}
+                <a href="{% url 'expenses' %}">Cancel</a>
+
+                <input type="submit" name="confirm">
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
