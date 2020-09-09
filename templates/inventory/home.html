@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title%}Home{% endblock %}
 {% block content %}
 
 <section id="card card-body" style="background-image: url('/static/img/bk.jpg')">
     <div class="container text-center ">
       <div class="home-search p-5">
         <div class="overlay p-5">
+          {% for message in messages %}
+          <p  class="text-center bg-secondary text-white " >{{message}}</p>
+          {% endfor%}
           <h1 class="display-4 mb-4 py-4 bg-primary text-white text-center">
             Search All Previous Trades
           </h1>
@@ -19,18 +22,14 @@
                   <label class="sr-only">Keywords</label>
                   <input type="text" name="keywords" class="form-control" placeholder="Keyword">
                 </div>
-
+              
                 <div class="col-md-6 mb-3">
                   <label class="sr-only">Scrap Category</label>
                   <input type="text" name="scrap_category" class="form-control" placeholder="Category">
                 </div>
 
-                <div class="col-md-6 mb-3">
-                  <label class="sr-only">Date</label>
-                  <input type="text" name="purchased_date" class="form-control" placeholder="Date">
-                </div>
-
-                
+              
+                <div class="col-md-3 mb-3"></div>
 
                   <div class="col-md-6 mb-3">
                     <label class="sr-only">Status</label>
@@ -46,13 +45,14 @@
   </section>
 
 
- 
+
 
 
   <section id="listings" class="py-5" style="background-color: aliceblue;">
-  <div class="container "><div class="container ">   {% include 'home2.html'%}</div>
+  <div class="container ">
 
- 
+
+    <div class="container ">   {% include 'home2.html'%}</div>
 
   <h2 class="  text-center bg-secondary text-white "> Inventory </h2>
 
@@ -67,7 +67,7 @@
           <table class="table table-sm">
               <tr>
                  
-                  <th>Type</th>
+                  <th>Category</th>
                   <th>Date</th>
                   <th>Quantity(Ton)</th>
                   <th>Rate/Ton</th>
@@ -82,7 +82,7 @@
                 <tr>
 
                   <th>{{ lot.scrap_category }}</th>
-                  <th>{{ lot.purchased_date }}</th>
+                  <th>{{ lot.purchased_date|date:"M d, Y" }}</th>
                   <th>{{ lot.quantity }}(ton)</th>
                   <th>Rs. {{ lot.rate  }}/ton</th>
                   <th>{{ lot.status }}</th>

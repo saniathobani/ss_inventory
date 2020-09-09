@@ -5,6 +5,7 @@
         <a class="navbar-brand" href="">
             <img src=""class=" logo" alt="">SS Scrap
         </a>
+        {% if user.is_authenticated %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,24 +25,31 @@
                 </li>
                 
             </ul>
+            
 
             <ul class="navbar-nav ml-auto">
-                <li {% if 'register' in request.path  %} 
-                        class="nav-item active mr-3" 
-                    {% else %}
-                        class="nav-item  mr-3"
-                    {% endif %}>
+            
+  
+            
+            <li class="nav-item mr-3">
+                <a class="nav-link nav-item active mr-3">Welcome, {{ user.username}}</a>
+            </li>
+            <li class="nav-item mr-3">
+                <a href="{% url 'logout' %}" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
                 
-                    <a class="nav-link" href="">
-                        <i class="fas fa-user-plus"></i> Register</a>
-                </li>
+            </li>
+            {%else%}
+        
                 <li class="nav-item mr-3">
 
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{% url 'login'%}">
                         <i class="fas fa-sign-in-alt"></i>
 
                         Login</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>

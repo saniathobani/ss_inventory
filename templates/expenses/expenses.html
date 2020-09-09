@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title%}Transaction{% endblock %}
 {% block content %}
-<section id="showcase" style="background-color:aliceblue">
+<section id="card card-body" style="background-image: url('/static/img/bk.jpg')">
   <div class="container text-center">
     <div class="home-search p-5">
       <div class="overlay p-5">
-        <h1 class="display-4 mb-4">
-          Searching Just Got So Easy
+        <h1 class="display-4 mb-4 py-4 bg-primary text-white text-center">
+          Search For Transactions
         </h1>
-        
+        <p class="text-center bg-secondary text-white ">Use Valid Keywords To Get Valid Results </p>
         <div class="search">
           <form action="{% url 'e_search' %}">
             <!-- Form Row 1 -->
@@ -16,7 +16,7 @@
 
               <div class="col-md-6 mb-3">
                 <label class="sr-only">Keywords</label>
-                <input type="text" name="keywords" class="form-control" placeholder="Keyword">
+                <input type="text" name="keywords" class="form-control" placeholder="Keyword" >
               </div>
 
               <div class="col-md-6 mb-3 text-center">
@@ -28,15 +28,8 @@
                 <label class="sr-only">Handler</label>
                 <input type="text" name="handler" class="form-control" placeholder="Handler">
               </div>
-
-              <div class="form-row center">
-                <div class="col-md-6 mb-3">
-                  <label class="sr-only">Date</label>
-                  <input type="text" name="date" class="form-control" placeholder="Date">
-                </div>
-
-                <div class="form-row center">
-                  <div class="col-md-12 mb-3">
+              
+                  <div class="col-md-6 mb-3 text-center">
                     <label class="sr-only">type of transaction</label>
                     <input type="text" name="type_of_transaction" class="form-control" placeholder="type of transaction">
                   </div>
@@ -63,7 +56,7 @@
         <div class="row p-5">
             
         
-            <div class="col">
+            <div class="col py-5">
                 <div class="col-md">
                     <div class="card text-center hr bg-primary text-white " id="total-stock">
                         <div class="card-header">
@@ -75,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col py-5">
               <div class="col-md">
                   <div class="card text-center hr bg-primary text-white " id="total-stock">
                       <div class="card-header">
@@ -124,7 +117,7 @@
 
                   <th>{{ expense.entry }}</th>
                   <th>{{ expense.handler }}</th>
-                  <th>{{ expense.date }}</th>
+                  <th>{{ expense.date|date:"M d, Y"  }}</th>
                   <th>{{ expense.category }}</th>
                   <th>{{ expense.amount }}</th>
                   <th>{{ expense.type_of_transaction }}</th>
