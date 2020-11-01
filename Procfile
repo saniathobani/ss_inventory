@@ -1,0 +1,1 @@
+web: gunicorn ss_scrap.wsgi --log-file -
