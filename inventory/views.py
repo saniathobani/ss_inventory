@@ -25,7 +25,7 @@ def loginPage(request):
         else:
             messages.info(request, "Incorrect Credentials Or Authentication")
             return redirect('login')
-    return  render(request, 'login.html')
+    return render(request, 'login.html')
 
 
 
@@ -41,7 +41,7 @@ def home(request):
    # lots=  lotse.extra(select={'result': 'quantity * rate - extra_expenses'})
     
 
-    paginator = Paginator(lots, 10)
+    paginator = Paginator(lots, 15)
     page = request.GET.get('page')
     paged_lots = paginator.get_page(page)
 
@@ -70,7 +70,8 @@ def home(request):
         ptot += lot.total
 
     profit = stot - ptot
-    
+    profit ='{:,}'.format(profit)
+    tot_invest ='{:,}'.format(tot_invest)
     context = {
 
         'lots': paged_lots,
@@ -92,6 +93,10 @@ def expenses(request):
 
     totdebit = Expenses.objects.filter(entry__iexact = 'Debited').aggregate(Sum('amount'))['amount__sum']
     totcredit = Expenses.objects.filter(entry__iexact = 'Credited').aggregate(Sum('amount'))['amount__sum']
+
+    totdebit = '{:,}'.format(totdebit)
+    totcredit = '{:,}'.format(totcredit)
+
     context = {
         'expenses':exs,
         'totdebit':totdebit,
@@ -165,7 +170,8 @@ def eSearch(request):
     totdebit = queryset_list.filter(entry__iexact = 'Debited').aggregate(Sum('amount'))['amount__sum']
     totcredit = queryset_list.filter(entry__iexact = 'Credited').aggregate(Sum('amount'))['amount__sum']
 
-    
+    totdebit = '{:,}'.format(totdebit)
+    totcredit = '{:,}'.format(totcredit)
 
     context ={
         'expenses':queryset_list,
@@ -228,10 +234,13 @@ def search(request):
             ptot += lot.total
 
         profit = stot - ptot
+        profit ='{:,}'.format(profit)
+        tot_invest ='{:,}'.format(tot_invest)
+
 
     context ={
         'lots':queryset_list,
-         'tot_invest':tot_invest,
+        'tot_invest':tot_invest,
         'tot_stock':tot_stock,
         'tot_available':tot_available,
         'tot_sold':tot_sold,

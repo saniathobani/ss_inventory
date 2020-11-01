@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block title%}Home{% endblock %}
+
 {% block content %}
+{% load humanize %}
 
 <section id="card card-body" style="background-image: url('/static/img/bk.jpg')">
     <div class="container text-center ">
@@ -81,12 +83,12 @@
                
                 <tr>
 
-                  <th>{{ lot.scrap_category }}</th>
+                  <th>{{ lot.scrap_category  }}</th>
                   <th>{{ lot.purchased_date|date:"M d, Y" }}</th>
                   <th>{{ lot.quantity }}(ton)</th>
                   <th>Rs. {{ lot.rate  }}/ton</th>
                   <th>{{ lot.status }}</th>
-                  <th>{{ lot.total|floatformat:-2  }}</th>
+                  <th>{{ lot.total|floatformat:-2 }}</th>
                   <th><a href="{% url 'update_lot' lot.id %}" class="btn  btn-secondary btn-block ">Update</a></div></th>
                   <th><a href="{% url 'delete_lot' lot.id %}" class="btn btn-secondary btn-block ">Delete</a></th>
                  

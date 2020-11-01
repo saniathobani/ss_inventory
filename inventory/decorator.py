@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 def allowed_users(allow=[]):
     def decorator(view_func):
@@ -10,7 +10,7 @@ def allowed_users(allow=[]):
             if group in allow:    
                 return view_func(request, *args, **kwargs)
             else:
-                return render('login')
+                return render(request,'login.html')
         return wrapper
     return decorator
 
