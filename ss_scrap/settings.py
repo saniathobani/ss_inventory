@@ -26,7 +26,7 @@ SECRET_KEY = '&2q=*bx$_xfsykd5t^!2lc)+fjl%udb-o_h=9rsjw6r&y!hou6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ss-scrap.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['ss-scrap.herokuapp.com', '127.0.0.1:8000/',]
 
 
 # Application definition
